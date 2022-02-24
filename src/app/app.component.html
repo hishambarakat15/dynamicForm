@@ -8,78 +8,44 @@
           <form [formGroup]="schoolForm">
             <div class="mb-3">
               <label for="schoolName" class="form-label"> School Name </label>
-              <input
-                type="text"
-                class="form-control"
-                id="schoolName"
-                formControlName="schoolName"
-              />
+              <input type="text" class="form-control" id="schoolName" formControlName="schoolName" />
             </div>
 
             <div class="mb-3">
-              <label for="totalStudentsCount" class="form-label"
-                >Total Students Count</label
-              >
-              <input
-                type="number"
-                class="form-control"
-                id="totalStudentsCount"
-                formControlName="totalStudentsCount"
-              />
+              <label for="totalStudentsCount" class="form-label">Total Students Count</label>
+              <input type="number" class="form-control" id="totalStudentsCount" formControlName="totalStudentsCount" />
             </div>
             <!-- Start Class Room-->
             <div class="class-room mb-2" formArrayName="classRooms">
-              <ng-container
-                *ngFor="
+              <ng-container *ngFor="
                   let classRoom of getClassRoom().controls;
                   let classRoomIndex = index
-                "
-              >
+                ">
                 <div [formGroupName]="classRoomIndex">
                   <div class="mb-3">
                     <label for="studentCount" class="form-label">
-                      Student Count</label
-                    >
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="studentCount"
-                      formControlName="studentCount"
-                    />
+                      Student Count</label>
+                    <input type="number" class="form-control" id="studentCount" formControlName="studentCount" />
                   </div>
                   <div class="mb-3">
                     <label for="classRoomNumber" class="form-label">
-                      Class Room Number</label
-                    >
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="classRoomNumber"
-                      formControlName="classRoomNumber"
-                    />
+                      Class Room Number</label>
+                    <input type="number" class="form-control" id="classRoomNumber" formControlName="classRoomNumber" />
                   </div>
                   <!-- Start Subjects-->
                   <div class="subjects" formArrayName="subjects">
-                    <ng-container
-                      *ngFor="
+                    <ng-container *ngFor="
                         let subject of getClassRoomSubjects(classRoomIndex)
                           .controls;
                         let subjectIndex = index
-                      "
-                    >
+                      ">
                       <!--Start Subject-->
                       <div class="row ml-0" [formGroupName]="subjectIndex">
                         <div class="col-6">
                           <div class="mb-3">
                             <label for="subjectName" class="form-label">
-                              Subject Name</label
-                            >
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="subjectName"
-                              formControlName="subjectName"
-                            />
+                              Subject Name</label>
+                            <input type="text" class="form-control" id="subjectName" formControlName="subjectName" />
                           </div>
                         </div>
                         <div class="mb-3 col-6">
@@ -89,65 +55,35 @@
                           <fieldset class="row mb-3">
                             <div class="col-sm-10 d-flex">
                               <div class="form-check mx-2">
-                                <input
-                                  class="form-check-input"
-                                  type="radio"
-                                  id="gridRadios1"
-                                  value="Easy"
-                                  checked
-                                  formControlName="subjectLevel"
-                                />
-                                <label
-                                  class="form-check-label"
-                                  for="gridRadios1"
-                                >
+                                <input class="form-check-input" type="radio" id="gridRadios1" value="Easy" checked
+                                  formControlName="subjectLevel" />
+                                <label class="form-check-label" for="gridRadios1">
                                   Easy
                                 </label>
                               </div>
                               <div class="form-check mx-2">
-                                <input
-                                  class="form-check-input"
-                                  type="radio"
-                                  id="gridRadios2"
-                                  value="Middle"
-                                  formControlName="subjectLevel"
-                                />
-                                <label
-                                  class="form-check-label"
-                                  for="gridRadios2"
-                                >
+                                <input class="form-check-input" type="radio" id="gridRadios2" value="Middle"
+                                  formControlName="subjectLevel" />
+                                <label class="form-check-label" for="gridRadios2">
                                   Middle
                                 </label>
                               </div>
                               <div class="form-check mx-2">
-                                <input
-                                  class="form-check-input"
-                                  type="radio"
-                                  id="gridRadios1"
-                                  value="Hard"
-                                  checked
-                                  formControlName="subjectLevel"
-                                />
-                                <label
-                                  class="form-check-label"
-                                  for="gridRadios1"
-                                >
+                                <input class="form-check-input" type="radio" id="gridRadios1" value="Hard" checked
+                                  formControlName="subjectLevel" />
+                                <label class="form-check-label" for="gridRadios1">
                                   Hard
                                 </label>
                               </div>
                             </div>
                           </fieldset>
                         </div>
-                        <button
-                          type="button"
-                          class="btn btn-danger"
-                          (click)="
+                        <button type="button" class="btn btn-danger" (click)="
                             deleteClassRoomSubjects(
                               classRoomIndex,
                               subjectIndex
                             )
-                          "
-                        >
+                          ">
                           Delete Subject
                         </button>
                       </div>
@@ -155,29 +91,17 @@
                   </div>
 
                   <!-- End Subject-->
-                  <button
-                    type="button"
-                    class="btn btn-secondary m-1"
-                    (click)="addClassRoomSubjects(classRoomIndex)"
-                  >
+                  <button type="button" class="btn btn-secondary m-1" (click)="addClassRoomSubjects(classRoomIndex)">
                     Add Subject
                   </button>
-                  <button
-                    type="button"
-                    class="btn btn-danger m-1"
-                    (click)="deleteClassRoom(classRoomIndex)"
-                  >
+                  <button type="button" class="btn btn-danger m-1" (click)="deleteClassRoom(classRoomIndex)">
                     Delete Class Room
                   </button>
                 </div>
               </ng-container>
             </div>
             <!-- End Class Room-->
-            <button
-              type="button"
-              class="btn btn-primary my-2"
-              (click)="addClassRoom()"
-            >
+            <button type="button" class="btn btn-primary my-2" (click)="addClassRoom()">
               Add Class Room
             </button>
           </form>
